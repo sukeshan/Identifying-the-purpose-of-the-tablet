@@ -5,3 +5,18 @@
  
  
 ![image](https://user-images.githubusercontent.com/48553042/201034390-2a36fdf3-f949-4db2-8831-716cf8b442af.png)
+
+
+## Environmental setup
+
+    git clone
+    
+    pip install -r Requirements.txt
+  
+ ## Purpose of the tablet
+ 
+    from main import check
+ 
+    check(file : image_path , drug_only : False) # If drug_only is True ,It will only return Drug name
+  
+  
