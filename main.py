@@ -3,21 +3,23 @@ from conditions import check1 ,check2 ,check3
 from scraper import check_use
 import numpy as np
 
-def check(file:str ) -> str:
+def check(file:str ,drug_only = False  ) -> str:
     r'''
     Arguments:-
 
-    file : Image directory path in string format
-    
+    file      : Image directory path in string format or Image in ndarray format
+    drug_only : If True , Return only Drug name 
+
     Return:-
 
-    return  Output (String Format)
+    return  Output in (Dictionary Format)
 
     '''
     call = ocr(file)
     call.drop_duplicates(subset = ['word'],inplace = True)
-    filter_0 = call.sort_values(by = 'height').tail(15)['word'].values[::-1]
-    filter_1 = [call[call.word == line] for line in list(set(filter_0)) if len(line)>=6 and check1 (line) !=0]
+
+    filter_0 = call.sort_values(by = 'height').tail(15)['word'].values[::-1] 
+    filter_1 = [call[call.word == line] for line in list(set(filter_0)) if len(line)>=6 and check1 (line) !=0] 
 
     if len(filter_1) ==0 : return 'Sorry given image is not accurate.'
     
@@ -33,7 +35,9 @@ def check(file:str ) -> str:
             if line.width.values[0] > width_per and line.height.values[0] > temp_hgt:
                 filter_2 = line
                 temp_hgt = line.height.values[0]
-                
+
     if len(filter_2) ==0 : return ('Sorry given image is not accurate.. ')
+
+    if drug_only is True: return check3(call ,filter_2 ,width_per)
 
     return  check_use( check3(call ,filter_2 ,width_per) )
