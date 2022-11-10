@@ -15,10 +15,17 @@ def check_use(drug_name):
     body = soup.body.findAll ('td' ,{'class':'DescriptionTable_field__1aXTD'})
     body1 = soup.body.findAll ('td' ,{'class':'DescriptionTable_value__1afug'})
     body2 = soup.body.findAll ('div' ,{'class':'Section_section__QOSbs'})
-    if len(body2) ==0: return "Sorry we couldn\'t find the use cases "
-    for i in zip(body ,body1): output[str((i[0])).split('>')[1].split('<')[0]] = str((i[1])).split('>')[1].split('<')[0]
-   
-    output['role'] = output[''] 
-    del(output[''] )
 
+    if len(body2) ==0: return "Sorry we couldn\'t find the use cases "
+    
+    for i in zip(body ,body1): output[str((i[0])).split('>')[1].split('<')[0]] = str((i[1])).split('>')[1].split('<')[0]
+        
+    try :
+        output['Side effects'] = output[''] 
+        del(output[''] )
+        
+    except KeyError:
+        pass
+    
     return output
+    
