@@ -9,7 +9,7 @@
 
 ## Environmental setup
 
-    git clone
+    git clone https://github.com/sukeshan/Identifying-the-purpose-of-the-tablet.git
     
     pip install -r Requirements.txt
   
