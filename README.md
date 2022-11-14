@@ -13,7 +13,7 @@
     
     pip install -r Requirements.txt
   
- ## Purpose of the tablet
+ ## ⚡ Quick Inference
  
     from main import check
  
